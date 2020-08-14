@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Blog Ninja | <%= title %></title>
-	</head>
+	<%- include('./partials/head.ejs') %>
 	<body>
-		<nav>
-			<div class="site-title">
-				<a href="/"><h1><%= title %></h1></a>
-			</div>
-		</nav>
+		<%- include('./partials/nav.ejs') %>
 
 		<div class="not-found content">
 			<h2>OOPS, page not found D:</h2>
 			<p>Im soweyhhh</p>
 		</div>
+
+		<%- include('./partials/footer.ejs') %>
 	</body>
 </html>
