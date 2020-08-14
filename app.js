@@ -10,6 +10,8 @@ app.set('view engine', 'ejs');
 //listen for requests
 app.listen(3000);
 
+app.use(express.static('public'));
+
 app.use(morgan('dev'));
 // app.use((req, res, next) => {
 // 	console.log('1. host: ', req.hostname);
