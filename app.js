@@ -27,12 +27,12 @@ app.use(express.static('public'));
 
 app.use(morgan('dev'));
 
-//routes
+//mongoose sandbox routes
 app.get('/add-blog', (req, res) => {
 	const blog = new Blog({
-		title: 'First test Blog',
-		snippet: 'this is the snippet',
-		body: 'this is the body!',
+		title: 'Second test Blog',
+		snippet: 'this is the second snippet',
+		body: 'this is the second body!',
 	});
 	blog.save()
 		.then((result) => {
@@ -43,6 +43,27 @@ app.get('/add-blog', (req, res) => {
 		});
 });
 
+app.get('/all-blogs', (req, res) => {
+	Blog.find()
+		.then((result) => {
+			res.send(result);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
+app.get('/single-blog', (req, res) => {
+	Blog.findById('5f36785181ff4b0828b63108')
+		.then((result) => {
+			res.send(result);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
+//routes
 app.get('/', (req, res) => {
 	const blogs = [
 		{ title: 'Blog Syahir', snippet: 'This is the snippet title for blog Syahir' },
