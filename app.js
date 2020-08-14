@@ -10,21 +10,33 @@ app.set('view engine', 'ejs');
 app.listen(3000);
 
 app.get('/', (req, res) => {
-	// res.send('<p>Hello :D</p>');
-	res.render('index');
+	const blogs = [
+		{ title: 'Blog Syahir', snippet: 'This is the snippet title for blog Syahir' },
+		{ title: 'Blog Syazmi', snippet: 'This is the snippet title for blog Syazmi' },
+		{ title: 'Blog Syakira', snippet: 'This is the snippet title for blog Syakira' },
+	];
+
+	res.render('index', {
+		title: 'Home',
+		blogs,
+	});
 });
 
 app.get('/about', (req, res) => {
-	// res.send('<p>Hello :D</p>');
-	res.render('about');
+	res.render('about', {
+		title: 'About',
+	});
 });
 
-//redirect to about page
-app.get('/about-us', (req, res) => {
-	res.redirect('/about');
+app.get('/blogs/create', (req, res) => {
+	res.render('create', {
+		title: 'Create New Blog',
+	});
 });
 
 //404
 app.use((req, res) => {
-	res.status(404).render('404');
+	res.status(404).render('404', {
+		title: 'Error!',
+	});
 });

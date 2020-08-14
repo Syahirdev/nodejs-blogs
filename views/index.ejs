@@ -3,12 +3,12 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Blog Ninja</title>
+		<title>Blog Ninja | <%= title %></title>
 	</head>
 	<body>
 		<nav>
 			<div class="site-title">
-				<a href="/"><h1>Blogs App</h1></a>
+				<a href="/"><h1>Blogs App | <%= title %></h1></a>
 				<p>A Simple CRUD Blogs App</p>
 			</div>
 			<ul>
@@ -20,6 +20,13 @@
 
 		<div class="blogs content">
 			<h2>All Blogs</h2>
+
+			<% if(blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+			<h3 class="title"><%= blog.title %></h3>
+			<p class="snippet"><%= blog.snippet %></p>
+			<% })} else { %>
+			<p>There are no blogs to show here... D:</p>
+			<% } %>
 		</div>
 	</body>
 </html>
