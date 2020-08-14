@@ -1,6 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+
+const Blog = require('./models/blog');
+
 //express app
 const app = express();
 
@@ -25,6 +28,21 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 
 //routes
+app.get('/add-blog', (req, res) => {
+	const blog = new Blog({
+		title: 'First test Blog',
+		snippet: 'this is the snippet',
+		body: 'this is the body!',
+	});
+	blog.save()
+		.then((result) => {
+			res.send(result);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+});
+
 app.get('/', (req, res) => {
 	const blogs = [
 		{ title: 'Blog Syahir', snippet: 'This is the snippet title for blog Syahir' },
